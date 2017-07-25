@@ -87,6 +87,8 @@ test:
 #
 production:
   <<: *default
-  database: teacher_den_production
-  username: teacher_den
-  password: <%= ENV['TEACHER_DEN_DATABASE_PASSWORD'] %>
+  host:     ec2-54-247-120-169.eu-west-1.compute.amazonaws.com
+  port:     5432
+  database: d3c53ccs0dk9mt
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
