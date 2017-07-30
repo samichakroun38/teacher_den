@@ -10,26 +10,6 @@
     <% articles.push(YAML.load_file(Rails.root.join(file)).with_indifferent_access) %>
   <% end %>
 
-  <div class="doc-sidebar hidden-xs">
-      <nav id="doc-nav">
-        <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
-          <% articles.each do |article| %>
-            <li>
-              <a href="#<%= article[:title].parameterize %>-section" class="scrollTo"><%= article[:title].titleize %></a>
-
-              <% if article.dig(:subparts) %>
-                <ul class="nav doc-sub-menu">
-                <% article.dig(:subparts).each do |subpart| %>
-                  <li><a href="#<%= subpart[:title].parameterize %>" class="scrollTo"><%= subpart[:title].titleize %></a></li>
-                <% end %>
-                </ul>
-              <% end %>
-
-            </li>
-          <% end %>
-        </ul><!--//doc-menu-->
-      </nav>
-    </div><!--//doc-sidebar-->
   <div class="doc-content">
     <div class="content-inner">
       <% articles.each do |article| %>
@@ -56,6 +36,28 @@
       <% end %>
     </div><!--//content-inner-->
   </div><!--//doc-content-->
+
+  <div class="doc-sidebar hidden-xs">
+    <nav id="doc-nav">
+      <ul id="doc-menu" class="nav doc-menu">
+        <% articles.each do |article| %>
+          <li>
+            <a href="#<%= article[:title].parameterize %>-section" class="scrollTo"><%= article[:title].titleize %></a>
+
+            <% if article.dig(:subparts) %>
+              <ul class="nav doc-sub-menu">
+              <% article.dig(:subparts).each do |subpart| %>
+                <li><a href="#<%= subpart[:title].parameterize %>" class="scrollTo"><%= subpart[:title].titleize %></a></li>
+              <% end %>
+              </ul>
+            <% end %>
+
+          </li>
+        <% end %>
+      </ul><!--//doc-menu-->
+    </nav>
+  </div><!--//doc-sidebar-->
+
 </div><!--//doc-body-->
 
 <% end %>

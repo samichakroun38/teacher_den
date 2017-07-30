@@ -16,3 +16,22 @@
 //= require turbolinks
 //= require "prettydocs.js"
 //= require_tree .
+
+$(function() {
+  // Fix affix problems when navigating between pages with turbolinks
+  $(document).on('turbolinks:load', function(){
+    $('#doc-menu').affix({
+        offset: {
+            top: ($('#header').outerHeight(true) + $('#doc-header').outerHeight(true)) + 45,
+            bottom: ($('#footer').outerHeight(true) + $('#promo-block').outerHeight(true)) + 75
+        }
+    });
+
+    $('#mainNav').affix({
+        offset: {
+            top: 1,
+            bottom: 0
+        }
+    });
+  });
+});
