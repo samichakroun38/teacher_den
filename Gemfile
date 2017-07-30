@@ -46,6 +46,10 @@ gem 'annotate'
 # markdown
 gem 'redcarpet'
 
+# admin site
+gem 'rails_admin', '~> 1.2'
+gem "rails_admin_import", "~> 2.0"
+
 # Caching
 gem 'redis'
 gem 'redis-namespace'
