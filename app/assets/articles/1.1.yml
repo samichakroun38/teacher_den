@@ -1,0 +1,11 @@
+title: Mon autre article
+content: "Le contenu principal"
+subparts:
+  - title: prems
+    content: >
+             Le contenu de la première sous partie
+
+             
+             et le reste **et lalal**
+  - title: Second
+    content: "Le contenu de la seconde sous partie"

@@ -1,1 +1,63 @@
+<% cache 'public-page' do %>
+
 <b>Go to your profile </b> <%= link_to "here", user_profile_path %>
+
+<div id="doc-header" class="doc-header text-center">
+  <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>
+  <div class="meta"><i class="fa fa-clock-o"></i> Last updated: Jan 25th, 2016</div>
+</div><!--//doc-header-->
+<div class="doc-body">
+  <% articles = [] %>
+  <% Dir["app/assets/articles/*.yml"].each do |file| %>
+    <% articles.push(YAML.load_file(Rails.root.join(file)).with_indifferent_access) %>
+  <% end %>
+
+  <div class="doc-sidebar hidden-xs">
+      <nav id="doc-nav">
+        <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+          <% articles.each do |article| %>
+            <li>
+              <a href="#<%= article[:title].parameterize %>-section" class="scrollTo"><%= article[:title].titleize %></a>
+              
+              <% if article.dig(:subparts) %>
+                <ul class="nav doc-sub-menu">
+                <% article.dig(:subparts).each do |subpart| %>
+                  <li><a href="#<%= subpart[:title].parameterize %>" class="scrollTo"><%= subpart[:title].titleize %></a></li>
+                <% end %>
+                </ul>
+              <% end %>
+              
+            </li>
+          <% end %>
+        </ul><!--//doc-menu-->
+      </nav>
+    </div><!--//doc-sidebar-->
+  <div class="doc-content">
+    <div class="content-inner">
+      <% articles.each do |article| %>
+         <section id="<%= article[:title].parameterize %>-section" class="doc-section">
+          <h2 class="section-title"><%= article[:title].titleize %></h2>
+          <div class="section-block">
+            <%= @markdown.render(article.dig(:content)).html_safe %>
+            
+            <% if article.dig(:subparts) %>
+              
+              <% article[:subparts].each do |subpart| %>
+                <div id="<%= subpart[:title].parameterize %>" class="section-block">
+                  <h3 class="block-title"><%= subpart[:title].titleize %></h3>
+                  <%= @markdown.render(subpart[:content]).html_safe %>
+                </div>
+              <% end %>
+              
+            <% end %>
+            
+          </div>
+          
+
+      </section><!--//doc-section-->
+      <% end %>
+    </div><!--//content-inner-->
+  </div><!--//doc-content-->
+</div><!--//doc-body-->
+
+<% end %>

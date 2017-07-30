@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "normalize.scss";
+@import "prettydocs.scss";
+
+@media(min-width:768px) {
+  .navbar-default {
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    top: 0px;
+    /* Add additional styles here for the UNCOLLAPSED state */
+  }
+  .navbar-default.affix {
+    padding: 0;
+    width: 100%;
+    /* Add additional styles here for the COLLAPSED state */
+    .breadcrumb {
+      display: none;
+    }
+  }
+}
+
+.navbar-default.affix-bottom {
+  width: 100%;
+  top: 0 !important;
+}
+
+.breadcrumb {
+  font-size: 13px;
+}
+
+#doc-menu.affix {
+  top: 135px;
+}

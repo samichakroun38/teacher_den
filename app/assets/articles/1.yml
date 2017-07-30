@@ -1,0 +1,11 @@
+title: Mon premier article
+content: "Le contenu principal"
+subparts:
+  - title: First
+    content: >
+             Le contenu de la première sous partie
+
+             
+             et le reste **et lalal**
+  - title: Second
+    content: "Le contenu de la seconde sous partie"
