@@ -16,10 +16,10 @@
       <div class="container">
 
         <div class="current_user text-right">
-          <% if user_signed_in? %>
-            <b><%= link_to current_user.email, user_profile_path %></b> <%= link_to "logout", destroy_user_session_path %>
-          <% else %>
-            <%= link_to "login", new_user_session_path %>
+          <% if admin_signed_in? %>
+            Admin : <%= current_admin.email %> (<%= link_to "Se déconnecter", destroy_admin_session_path, method: :delete %>)
+          <% elsif user_signed_in? %>
+            <b><%= link_to current_user.email, user_profile_path %></b> <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
           <% end %>
         </div>
 

@@ -14,5 +14,8 @@ module TeacherDen
 
     config.action_controller.perform_caching = true
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+
+    I18n.available_locales = [:en, :fr]
+    I18n.default_locale = :fr
   end
 end

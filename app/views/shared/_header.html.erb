@@ -18,24 +18,16 @@
         <ol class="breadcrumb">
           A wise teacher makes learning a joy
         </ol>
-      </a> 
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Portfolio</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
+        <%= header_nav_link "Accueil", "/" %>
+        <%= header_nav_link "Colles", "/colles" %>
+        <%= header_nav_link "Informations", "/informations" %>
+        <%= header_nav_link "Téléchargements", "/downloads" %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

@@ -1,7 +1,5 @@
 <% cache 'public-page' do %>
 
-<b>Go to your profile </b> <%= link_to "here", user_profile_path %>
-
 <div id="doc-header" class="doc-header text-center">
   <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>
   <div class="meta"><i class="fa fa-clock-o"></i> Last updated: Jan 25th, 2016</div>
@@ -18,7 +16,7 @@
           <% articles.each do |article| %>
             <li>
               <a href="#<%= article[:title].parameterize %>-section" class="scrollTo"><%= article[:title].titleize %></a>
-              
+
               <% if article.dig(:subparts) %>
                 <ul class="nav doc-sub-menu">
                 <% article.dig(:subparts).each do |subpart| %>
@@ -26,7 +24,7 @@
                 <% end %>
                 </ul>
               <% end %>
-              
+
             </li>
           <% end %>
         </ul><!--//doc-menu-->
@@ -39,20 +37,20 @@
           <h2 class="section-title"><%= article[:title].titleize %></h2>
           <div class="section-block">
             <%= @markdown.render(article.dig(:content)).html_safe %>
-            
+
             <% if article.dig(:subparts) %>
-              
+
               <% article[:subparts].each do |subpart| %>
                 <div id="<%= subpart[:title].parameterize %>" class="section-block">
                   <h3 class="block-title"><%= subpart[:title].titleize %></h3>
                   <%= @markdown.render(subpart[:content]).html_safe %>
                 </div>
               <% end %>
-              
+
             <% end %>
-            
+
           </div>
-          
+
 
       </section><!--//doc-section-->
       <% end %>
