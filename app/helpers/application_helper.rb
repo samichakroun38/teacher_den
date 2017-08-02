@@ -5,4 +5,9 @@ module ApplicationHelper
       link_to text, path
     end
   end
+
+  def site_color
+    # orange, pink, purple, blue, green, red
+    "body-orange"
+  end
 end
