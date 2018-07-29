@@ -8,15 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <div class="branding">
           <div class="logo">
             <span aria-hidden="true" class="icon_documents_alt icon"></span>
-            <span class="text-highlight">Teacher's</span><span class="text-bold">Den</span>
+            <span class="text-highlight"><%= gv("site_title_first") %></span><span class="text-bold"><%= gv("site_title_last") %></span>
           </div>
         </div><!--//branding-->
         <ol class="breadcrumb">
-          A wise teacher makes learning a joy
+          <%= gv "site_title_anecdote" %>
         </ol>
       </a>
     </div>
@@ -24,10 +24,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <%= header_nav_link "Accueil", "/" %>
-        <%= header_nav_link "Colles", "/colles" %>
-        <%= header_nav_link "Informations", "/informations" %>
-        <%= header_nav_link "Téléchargements", "/downloads" %>
+        <%= header_nav_link "Accueil", root_path %>
+        <%= header_nav_link "Colles", colles_path %>
+        <%= header_nav_link "Informations", user_informations_path %>
+        <%= header_nav_link "Téléchargements", user_downloads_path %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

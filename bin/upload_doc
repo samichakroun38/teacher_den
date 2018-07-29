@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'uri'
+require 'rest_client'
+
+options = {}
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: example.rb [options]"
+
+  opts.on('-a', '--address ADDRESS', 'Site address') { |v| options[:address] = v }
+  opts.on('-c', '--category CATEGORY', 'Category name') { |v| options[:category] = v }
+  opts.on('-f', '--file FILEPATH', 'File path') { |v| options[:file] = v }
+
+  opts.on('-h', '--help', 'Help') do
+    puts opts
+    exit
+  end
+end
+
+begin
+  optparse.parse!
+  mandatory = [:address, :category, :file]
+  missing = mandatory.select{ |param| options[param].nil? }
+  unless missing.empty?
+    raise OptionParser::MissingArgument.new(missing.join(', '))
+  end
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $!.to_s
+  puts optparse
+  exit
+end
+
+begin
+  uri = File.join(options[:address], "/api/v1/", "documents")
+  response = RestClient.post(
+    uri.to_s,
+    {
+      document: {
+        category: options[:category],
+        file: File.new(options[:file])
+      }
+    }
+  )
+rescue RestClient::UnprocessableEntity => e
+  puts e.message
+  puts e.response.body
+end
+
+puts response

@@ -1,19 +1,23 @@
-<div id="doc-header" class="doc-header text-center">
-  <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> <%= gv "colles_title" %></h1>
-</div><!--//doc-header-->
-<div class="doc-body">
+<% cats = @documents.group_by { |d| d.category } %>
 
-  <div class="doc-sidebar hidden-xs">
-    <nav id="doc-nav">
-      <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
-        <li><a href="#colles-section" class="scrollTo">Programmes</a></li>
-      </ul><!--//doc-menu-->
-    </nav>
-  </div><!--//doc-sidebar-->
-  <div class="doc-content">
-    <div class="content-inner">
-      <section id="colles-section" class="doc-section">
-        <h2 class="section-title">Programmes de colle</h2>
+<% if @documents.empty? %>
+  <div class="text-center">Aucun document à télécharger pour le moment</div>
+<% end %>
+
+<div class="doc-sidebar hidden-xs">
+  <nav id="doc-nav">
+    <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+      <% cats.each do|cat, _| %>
+        <li><a href="#<%= cat %>-section" class="scrollTo"><%= cat.titleize %></a></li>
+      <% end %>
+    </ul><!--//doc-menu-->
+  </nav>
+</div><!--//doc-sidebar-->
+<div class="doc-content">
+  <div class="content-inner">
+    <% cats.each do |cat, documents| %>
+      <section id="<%= cat %>-section" class="doc-section">
+        <h2 class="section-title"><%= cat.titleize %></h2>
         <div class="section-block">
           <div class="table-responsive">
             <table class="table table-striped">
@@ -26,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  <% @documents.each do |document| %>
+                  <% documents.each do |document| %>
                     <tr>
                       <th scope="row"><%= document.id %></th>
                       <td><%= document.file.original_filename %></td>
@@ -39,6 +43,7 @@
           </div>
         </div>
       </section><!--//doc-section-->
-    </div><!--//content-inner-->
-  </div><!--//doc-content-->
+    <% end %>
+  </div><!--//content-inner-->
+</div><!--//doc-content-->
 </div><!--//doc-body-->

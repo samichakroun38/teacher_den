@@ -1,5 +1,12 @@
 class RootController < ApplicationController
   def show
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    articles
+    markdown
+  end
+
+  private
+
+  def articles
+    @articles ||= Article.published.where(parent_id: nil).where(private: false)
   end
 end
