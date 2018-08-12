@@ -8,7 +8,7 @@
   <nav id="doc-nav">
     <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
       <% cats.each do|cat, _| %>
-        <li><a href="#<%= cat %>-section" class="scrollTo"><%= cat.titleize %></a></li>
+        <li><a href="#<%= cat %>-section" class="scrollTo"><%= cat.displayable_name.titleize %></a></li>
       <% end %>
     </ul><!--//doc-menu-->
   </nav>
@@ -17,7 +17,7 @@
   <div class="content-inner">
     <% cats.each do |cat, documents| %>
       <section id="<%= cat %>-section" class="doc-section">
-        <h2 class="section-title"><%= cat.titleize %></h2>
+        <h2 class="section-title"><%= cat.displayable_name.titleize %></h2>
         <div class="section-block">
           <div class="table-responsive">
             <table class="table table-striped">

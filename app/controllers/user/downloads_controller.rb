@@ -6,6 +6,6 @@ class User::DownloadsController < User::UserController
   private
 
   def documents
-    @documents ||= Document.where.not(category: :colles)
+    @documents ||= Document.joins(:category).where.not(categories: { label: "colles" })
   end
 end

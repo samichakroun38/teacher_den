@@ -40,7 +40,7 @@ response = RestClient::Request.new(
   password: options[:password],
   payload: {
     document: {
-      category: options[:category],
+      category_label: options[:category],
       file: File.new(options[:file])
     }
   }

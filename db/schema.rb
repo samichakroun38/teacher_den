@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180812144504) do
+ActiveRecord::Schema.define(version: 20180812151508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,14 @@ ActiveRecord::Schema.define(version: 20180812144504) do
     t.index ["parent_id"], name: "index_articles_on_parent_id", using: :btree
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "label"
+    t.string   "displayable_name"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "documents", force: :cascade do |t|
-    t.integer  "category"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "file_file_name"
@@ -50,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180812144504) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "token"
+    t.integer  "category_id"
   end
 
   create_table "global_vars", force: :cascade do |t|

@@ -15,14 +15,14 @@ class Api::V1::DocumentsController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      resource = Admin.find_by_email(username)
-      if resource && resource.valid_password?(password)
+      resource = User.find_by_email(username)
+      if resource && resource.admin? && resource.valid_password?(password)
         sign_in :admin, resource
       end
     end
   end
 
   def documents_params
-    params.require(:document).permit(:category, :file)
+    params.require(:document).permit(:category_label, :category_id, :file)
   end
 end

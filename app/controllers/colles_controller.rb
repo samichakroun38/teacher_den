@@ -6,6 +6,6 @@ class CollesController < ApplicationController
   private
 
   def documents
-    @documents ||= Document.colles
+    @documents ||= Document.joins(:category).where(categories: { label: "colles" })
   end
 end
