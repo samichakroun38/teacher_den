@@ -4,6 +4,8 @@ role :app, servers
 role :web, servers
 role :db, servers
 
+server servers[0], primary: true, user: "ubuntu"
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

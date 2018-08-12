@@ -927,19 +927,21 @@ select {
 .body-purple .doc-sub-menu > li.active > a {
   color: #8A40A7;
 }
-.affix-top {
-  position: absolute;
-  top: 15px;
-}
-.affix {
-  top: 15px;
-}
-.affix,
-.affix-bottom {
-  width: 230px;
-}
-.affix-bottom {
-  position: absolute;
+.doc-menu {
+  &.affix-top {
+    position: absolute;
+    top: 15px;
+  }
+  &.affix {
+    top: 15px;
+  }
+  &.affix,
+  &.affix-bottom {
+    width: 230px;
+  }
+  &.affix-bottom {
+    position: absolute;
+  }
 }
 /* ===== Promo block ===== */
 .promo-block {

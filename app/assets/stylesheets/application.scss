@@ -38,6 +38,16 @@
   }
 }
 
+@media(max-width: 768px) {
+  .header {
+    padding: 10px 0;
+  }
+
+  .navbar-header {
+    height: 68px;
+  }
+}
+
 .navbar-default.affix-bottom {
   width: 100%;
   top: 0 !important;
