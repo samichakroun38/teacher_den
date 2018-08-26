@@ -85,5 +85,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #Devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'sami.chakroun.eu' }
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_PASSWORD"],
+    domain: "em1678.mail.chakroun.eu",
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 end
