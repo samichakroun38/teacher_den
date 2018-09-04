@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   helper_method :gv
   before_action :global_vars
-  protect_from_forgery with: :exception
+  # https://stackoverflow.com/questions/43356105/actioncontrollerinvalidauthenticitytoken-rails-5-devise-audited-papertra/46268057
+  protect_from_forgery prepend: true
 
   private
 
